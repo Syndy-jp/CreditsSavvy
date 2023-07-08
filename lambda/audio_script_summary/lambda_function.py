@@ -10,7 +10,7 @@ BUCKET_NAME: str = os.environ['BUCKET_NAME']
 def lambda_handler(event, context):
     data:dict = event
     theme: str = data['theme']
-    table_of_contents:str = json.dumps(data['table_of_contents'])
+    table_of_contents:dict = data['table_of_contents']
     content:str = data['content']
     
     #キーポイントとスクリプトの作成
@@ -55,7 +55,7 @@ def generate_explanation(theme: str, table_of_contents: str, content: str) -> tu
     3~5つのキーポイントとスクリプトを用意してください。以下の制約を厳密に守る必要があります。
     ##CONSTRAINTS:
     ##出力は以下の形式である必要があります。
-    キーポイント @@@ スクリプト
+    キーポイント(json形式の文字列) @@@ スクリプト(文字列)
     #キーポイントとスクリプト以外の余分な回答はしないでください
     #話者は1人です
     #以下が入出力の例ですが、囲碁の例でそのまま出力しないでください。"{theme}"についてこれと同じ形式で出力してください。
