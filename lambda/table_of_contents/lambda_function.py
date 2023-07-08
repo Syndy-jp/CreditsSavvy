@@ -43,14 +43,14 @@ def generate_table_of_contents(theme: str) -> str:
     ##INPUT EXAMPLE:
     相対性理論
     ##OUTPUT EXAMPLE:
-    {
+    {{
     "1": "特殊相対性理論の基礎",
     "2": "光速不変の原理",
     "3": "相対性の原理",
     "4": "一般相対性理論の基礎",
     "5": "重力場の方程式",
     "6": "時空の歪みと重力の影響"
-    }
+    }}
     """
     # 説明を出力する
     tbl_of_content_response = openai.ChatCompletion.create(
