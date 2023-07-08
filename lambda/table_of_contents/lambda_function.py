@@ -5,7 +5,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
-    data = json.loads(event)
+    data = event
     theme: str = data["theme"]
     #目次の作成(成功するまで10回トライ)
     trial = 10

@@ -8,7 +8,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 BUCKET_NAME: str = os.environ['BUCKET_NAME']
 
 def lambda_handler(event, context):
-    data:dict = json.loads(event.get('body', '{}')).get('data')
+    data:dict = event
     theme: str = data['theme']
     table_of_contents:str = json.dumps(data['table_of_contents'])
     content:str = data['content']
