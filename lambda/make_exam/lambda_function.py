@@ -1,6 +1,8 @@
 import openai
+import json
+import os
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def lambda_handler(event, context):
     data: dict = event
