@@ -110,12 +110,12 @@
 ```json
 {
     "question" : "問題文"
-    "choices" : [選択肢の配列]
+    "choices" : ["選択肢の配列"]
     "answer" : "答えの選択肢"
     "explanation" : "解説文"
 }
 ```
-のjson
+のjson  
 \* descriptionの要素は問題文の文字列  
 \* selectionを生成するのに時間がかかるので少ない方がいい。  
 
@@ -134,7 +134,7 @@
 レスポンス
 ```json
 {        
-    'statusCode': 200,
-    'body': "講評",
+    "statusCode": 200,
+    "body" : "講評",
 }
 ```
