@@ -98,6 +98,7 @@ def generate_explanation(theme: str, table_of_contents: str, content: str) -> tu
     )
 
     sum: str = sum_response.choices[0].message.content
+    print(sum)
     sum_list: list[str] = sum.split("@@@")
     key_points: str = sum_list[0]
     script: str = sum_list[1]
