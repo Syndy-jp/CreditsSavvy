@@ -11,16 +11,16 @@ def lambda_handler(event, context):
     trial = 1
     for i in range(trial):
         try:
+            print(f"trial: {i}")
             table_of_contents: str = generate_table_of_contents(theme)
+            print("gptはできた")
             table_of_contents_json: dict = json.loads(table_of_contents)
             break
         except json.JSONDecodeError:
-            print("gptがjsonを返さない")
             # chatgptがjsonを返さない場合があるので、その場合は再度トライする
             if i == trial - 1:
                 raise
             pass
-    print("openaiは使える")
     response_data: dict ={
                 'table_of_contents': table_of_contents_json,
         }
@@ -31,6 +31,7 @@ def lambda_handler(event, context):
 
 # 目次を生成
 def generate_table_of_contents(theme: str) -> str:
+    print("関数には入れた")
     english_prompt = f"""
     ##PURPOSE: "{theme}"の講義のラジオドラマを作成します。
     以下の制約に厳密に従って、"{theme}"のための目次（最大6つまで）を準備してください。
@@ -53,6 +54,7 @@ def generate_table_of_contents(theme: str) -> str:
     "6": "時空の歪みと重力の影響"
     }}
     """
+    print("プロンプトは設定できた")
     # 説明を出力する
     tbl_of_content_response = openai.ChatCompletion.create(
         messages=[{"role": "user", "content": english_prompt}],
