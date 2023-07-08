@@ -7,7 +7,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def lambda_handler(event, context):
     data = event
     theme: str = data["theme"]
-    print("theme読み込み成功")
     #目次の作成(成功するまで10回トライ)
     trial = 10
     for i in range(trial):
@@ -20,7 +19,7 @@ def lambda_handler(event, context):
             if i == trial - 1:
                 raise
             pass
-    
+    print("openaiは使える")
     response_data: dict ={
                 'table_of_contents': table_of_contents_json,
         }
