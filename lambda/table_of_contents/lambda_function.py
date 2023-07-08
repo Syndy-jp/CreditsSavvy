@@ -19,7 +19,7 @@ def lambda_handler(event, context):
             if i == trial - 1:
                 raise
             pass
-    print("gpt成功")
+    print("openaiは使える")
     response_data: dict ={
                 'table_of_contents': table_of_contents_json,
         }
