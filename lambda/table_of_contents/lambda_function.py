@@ -4,36 +4,11 @@ import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def lambda_handler(event, context):
-    data = event
-    theme: str = data["theme"]
-    #目次の作成(成功するまで10回トライ)
-    trial = 1
-    for i in range(trial):
-        try:
-            table_of_contents: str = generate_table_of_contents(theme)
-            table_of_contents_json: dict = json.loads(table_of_contents)
-            break
-        except json.JSONDecodeError:
-            # chatgptがjsonを返さない場合があるので、その場合は再度トライする
-            if i == trial - 1:
-                raise
-            pass
-        except Exception as e:
-            print(e)
-    response_data: dict ={
-                'table_of_contents': table_of_contents_json,
-        }
-    return {
-        'statusCode': 200,
-        'body': response_data,
-    }
-
 # 目次を生成
 def generate_table_of_contents(theme: str) -> str:
     print("関数には入れた")
     prompt = f"""
-    ##PURPOSE: "{theme}"の講義のラジオドラマを作成します。
+    ##PURPOSE: "{theme}"についての講義音声を作成します。
     以下の制約に厳密に従って、"{theme}"のための目次（最大6つまで）を準備してください。
     出力は以下のようにしてください。
     ##CONSTRAINTS:
@@ -67,3 +42,29 @@ def generate_table_of_contents(theme: str) -> str:
     print("生成までいけた")
     tbl_of_content = tbl_of_content_response.choices[0].message.content
     return tbl_of_content
+
+
+def lambda_handler(event, context):
+    data = event
+    theme: str = data["theme"]
+    #目次の作成(成功するまで10回トライ)
+    trial = 1
+    for i in range(trial):
+        try:
+            table_of_contents: str = generate_table_of_contents(theme)
+            table_of_contents_json: dict = json.loads(table_of_contents)
+            break
+        except json.JSONDecodeError:
+            # chatgptがjsonを返さない場合があるので、その場合は再度トライする
+            if i == trial - 1:
+                raise
+            pass
+        except Exception as e:
+            print(e)
+    response_data: dict ={
+                'table_of_contents': table_of_contents_json,
+        }
+    return {
+        'statusCode': 200,
+        'body': response_data,
+    }
