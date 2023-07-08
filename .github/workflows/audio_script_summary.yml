@@ -2,7 +2,7 @@ name: AWS Lambda academix audio test generator Deploy
 on:
   push:
     paths:
-      - 'lambda/academix_audio_test_generator/**' # lambdaディレクトリ以下の変更があった場合にトリガーする
+      - 'lambda/audio_script_summary/**' # lambdaディレクトリ以下の変更があった場合にトリガーする
     branches:
       - main
 jobs:
@@ -35,14 +35,14 @@ jobs:
       
       - name: install dependencies
         run: |
-          cd workspace/lambda/academix_audio_test_generator
+          cd workspace/lambda/audio_script_summary
           pip install --upgrade pip
           pip install -r requirements.txt -t .
 
       - name: deploy to AWS Lambda
         run: |
-          cd workspace/lambda/academix_audio_test_generator
-          find . -type f ! -name 'requirements.txt' -exec zip academix_audio_test_generator.zip {} +
+          cd workspace/lambda/audio_script_summary
+          find . -type f ! -name 'requirements.txt' -exec zip audio_script_summary.zip {} +
           pip install awscli
-          aws s3 cp academix_audio_test_generator.zip s3://lambda--deploy/academix_audio_test_generator.zip
-          aws lambda update-function-code --function-name academix_audio_test_generator --s3-bucket lambda--deploy --s3-key academix_audio_test_generator.zip
+          aws s3 cp audio_script_summary.zip s3://lambda--deploy/audio_script_summary.zip
+          aws lambda update-function-code --function-name audio_script_summary --s3-bucket lambda--deploy --s3-key audio_script_summary.zip

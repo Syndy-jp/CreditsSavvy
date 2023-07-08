@@ -1,0 +1,48 @@
+name: AWS Lambda academix table_of_contents Deploy 
+on:
+  push:
+    paths:
+      - 'lambda/table_of_contents/**' # lambdaディレクトリ以下の変更があった場合にトリガーする
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: checkout lambda
+        uses: actions/checkout@v3
+        with:
+          path: workspace
+
+      - name: configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: GitHubActions
+
+      - name: get-caller-identity is allowed to run on role.
+        run: aws sts get-caller-identity
+
+      - name: setup-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+      
+      - name: install dependencies
+        run: |
+          cd workspace/lambda/table_of_contents
+          pip install --upgrade pip
+          pip install -r requirements.txt -t .
+
+      - name: deploy to AWS Lambda
+        run: |
+          cd workspace/lambda/table_of_contents
+          find . -type f ! -name 'requirements.txt' -exec zip table_of_contents.zip {} +
+          pip install awscli
+          aws s3 cp table_of_contents.zip s3://lambda--deploy/table_of_contents.zip
+          aws lambda update-function-code --function-name table_of_contents --s3-bucket lambda--deploy --s3-key table_of_contents.zip
