@@ -20,11 +20,12 @@ def lambda_handler(event, context):
                 raise
             pass
     
+    response_data: dict ={
+                'table_of_contents': table_of_contents_json,
+        }
     return {
         'statusCode': 200,
-        'body': {
-                'table_of_contents': table_of_contents_json,
-        },
+        'body': response_data,
     }
 
 # 目次を生成

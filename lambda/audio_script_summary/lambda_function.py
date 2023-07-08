@@ -5,7 +5,7 @@ from contextlib import closing
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-BUCKET_NAME = os.environ['BUCKET_NAME']
+BUCKET_NAME: str = os.environ['BUCKET_NAME']
 
 def lambda_handler(event, context):
     data:dict = json.loads(event.get('body', '{}')).get('data')
@@ -35,11 +35,15 @@ def lambda_handler(event, context):
     url: str
     url = s3_upload(audio_data, theme, content)
     
-    response_data = {
+    response_data: dict = {
         'script' : script,
         'key_points': key_points_json,
         'url': url,
     }
+    return {        
+            'statusCode': 200,
+            'body': response_data,
+        }
     
 # 説明を生成
 def generate_explanation(theme: str, table_of_contents: str, content: str) -> tuple[str, str]:
