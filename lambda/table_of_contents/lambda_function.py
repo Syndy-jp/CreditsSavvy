@@ -19,6 +19,8 @@ def lambda_handler(event, context):
             if i == trial - 1:
                 raise
             pass
+        except Exception as e:
+            print(e)
     response_data: dict ={
                 'table_of_contents': table_of_contents_json,
         }
@@ -36,7 +38,6 @@ def generate_table_of_contents(theme: str) -> str:
     出力は以下のようにしてください。
     ##CONSTRAINTS:
     #出力の文字列はJSON形式である必要があります。
-    #空白文字は"---"に置き換えて出力してください。
     #出力には、目次以外のものを含めないでください。
     #出力は日本語である必要があります。
     #以下の例（相対性理論）をそのまま出力しないでください。'{theme}'のための目次を作成してください。
