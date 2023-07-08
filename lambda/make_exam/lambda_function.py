@@ -3,7 +3,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
-    data: dict = json.loads(event)
+    data: dict = event
     selections: int = data["selection"]
     descriptions: int = data["description"]
     script: str = data["script"]
