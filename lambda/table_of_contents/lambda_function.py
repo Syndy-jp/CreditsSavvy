@@ -15,6 +15,7 @@ def lambda_handler(event, context):
             table_of_contents_json: dict = json.loads(table_of_contents)
             break
         except json.JSONDecodeError:
+            print("gptがjsonを返さない")
             # chatgptがjsonを返さない場合があるので、その場合は再度トライする
             if i == trial - 1:
                 raise
