@@ -54,9 +54,9 @@ def generate_explanation(theme: str, table_of_contents: str, content: str) -> tu
     キーポイント @@@ スクリプト
     #キーポイントとスクリプト以外の余分な回答はしないでください
     #話者は1人です
-    #以下が入出力の例です。"{theme}"についてこれと同じ形式で出力してください。
+    #以下が入出力の例ですが、囲碁の例でそのまま出力しないでください。"{theme}"についてこれと同じ形式で出力してください。
     
-    ##INPUT EXAMPLE::
+    ##INPUT EXAMPLE:
     "囲碁"の以下の目次の中から
     {
     "1": "囲碁の基本ルール",
