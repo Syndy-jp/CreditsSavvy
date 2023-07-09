@@ -5,15 +5,13 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
-    # print(event["body"])
-    # data = json.loads(event.get('body', '{}'))
-    data = event["body"]
+    data: bin = json.loads(event.get('body', '{}'))
     print(data)
     # data = json.loads(event)
     # mp3: bin = data['mp3']
     
     script: str = speech2text(data)
-    summary: str = generate_summary(sucript)
+    summary: str = generate_summary(script)
     
     return {        
             'statusCode': 200,
