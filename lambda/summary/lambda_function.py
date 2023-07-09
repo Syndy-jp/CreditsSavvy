@@ -5,26 +5,28 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
-    # data = json.loads(event.get('body', '{}'))
-    data = json.loads(event)
-    script: str = data['script']
+    data = json.loads(event.get('body', '{}'))
+    # data = json.loads(event)
+    # mp3: bin = data['mp3']
     
-    #キーポイントとスクリプトの作成
-    trial: int = 3 #最大試行回数
-    for i in range(trial):
-        try:
-            summary = generate_summary(sucript)
-            break
-        except json.JSONDecodeError:
-            # chatgptがjsonを返さない場合があるので、その場合は再度トライする
-            if i == trial - 1:
-                raise
-            pass
+    script: str = speech2text(data)
+    summary: str = generate_summary(sucript)
+    
     return {        
             'statusCode': 200,
             'body': summary,
         }
     
+    
+def speech2text(audio_data: bytes) -> str:
+    response = openai.Transcription.create(
+        audio=audio_data,
+        model='whisper',
+        language='en'
+    )
+    transcription = response['transcriptions'][0]['text']
+    return transcription  
+
 # 説明を生成
 def generate_summary(script: str) -> str:
     prompt = f"""
