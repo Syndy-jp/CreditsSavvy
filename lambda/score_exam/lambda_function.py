@@ -21,9 +21,10 @@ def make_comment(question: str, answer: str) -> str:
     prompt = f"""
     {question}という問題に対して、{answer}という解答をしました。
     この解答について、採点・講評をしてください。
+    批評・改善点の指摘もください。
     """
     response = openai.ChatCompletion.create(
-        messages=[{"role" : "system", "content" : "あなたは優秀な大学講師です。"}, {"role": "user", "content": prompt}],
+        messages=[{"role" : "system", "content" : "あなたは優秀な大学講師で批評家です。"}, {"role": "user", "content": prompt}],
         max_tokens=1024,
         n=1,
         temperature=0.7,
