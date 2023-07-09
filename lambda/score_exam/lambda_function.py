@@ -30,3 +30,5 @@ def make_comment(question: str, answer: str) -> str:
         stop=None,
         model="gpt-3.5-turbo",
     )
+    
+    return response.choices[0].message.content
