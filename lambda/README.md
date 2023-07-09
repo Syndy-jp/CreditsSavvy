@@ -71,8 +71,8 @@
 ```json
 {
     "script" : "スクリプト",
-    "selections" : "4",
-    "descriptions" : "3"
+    "selections" : 4,
+    "descriptions" : 3
 }
 ```
 \* selectionsとdescriptionsはそれぞれ選択問題と記述問題の個数  

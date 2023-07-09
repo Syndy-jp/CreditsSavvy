@@ -6,8 +6,8 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def lambda_handler(event, context):
     data: dict = json.loads(event.get('body', '{}'))
-    selections: int = data["selection"]
-    descriptions: int = data["description"]
+    selections: int = data["selections"]
+    descriptions: int = data["descriptions"]
     script: str = data["script"]
     
     #試験問題の作成
