@@ -5,6 +5,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
+    print(event)
     data = json.loads(event.get('body', '{}'))
     # data = json.loads(event)
     # mp3: bin = data['mp3']
