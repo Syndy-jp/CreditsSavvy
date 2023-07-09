@@ -138,3 +138,21 @@
     "body" : "講評",
 }
 ```
+
+### 5. 要約の作成
+(https://ldaept3xtfdusr22u4e5soqk3e0yreat.lambda-url.ap-northeast-1.on.aws/)  
+スクリプトを送れば、要約が返ってくる。  
+(例)  
+リクエスト(POST)
+```json
+{
+    "script" : "スクリプト"
+}
+```
+レスポンス
+```json
+{        
+    "statusCode": 200,
+    "body" : "要約文",
+}
+```

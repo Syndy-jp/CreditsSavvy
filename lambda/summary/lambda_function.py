@@ -1,7 +1,5 @@
 import os
 import json
-import boto3
-from contextlib import closing
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -24,13 +22,9 @@ def lambda_handler(event, context):
             if i == trial - 1:
                 raise
             pass
-    
-    response_data: dict = {
-        'summary' : summary
-    }
     return {        
             'statusCode': 200,
-            'body': response_data,
+            'body': summary,
         }
     
 # 説明を生成
