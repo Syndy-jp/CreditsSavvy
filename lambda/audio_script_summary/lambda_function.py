@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     content:str = data['content']
     
     #キーポイントとスクリプトの作成
-    trial: int = 10 #最大試行回数
+    trial: int = 3 #最大試行回数
     key_points:str
     script:str
     for i in range(trial):

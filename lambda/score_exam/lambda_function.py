@@ -5,7 +5,7 @@ import os
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def lambda_handler(event, context):
-    data: dict = event
+    data: dict = json.loads(event.get('body', '{}'))
     question: str = data["question"]
     answer: str = data["answer"]
     
