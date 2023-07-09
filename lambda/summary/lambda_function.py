@@ -5,7 +5,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
-    # data = json.loads(event.get('body', '{}'))
+    data = json.loads(event.get('body', '{}'))
     script: str = data['script']
     
     #キーポイントとスクリプトの作成
