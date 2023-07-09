@@ -3,7 +3,6 @@ import json
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-BUCKET_NAME: str = os.environ['BUCKET_NAME']
 
 def lambda_handler(event, context):
     data = json.loads(event.get('body', '{}'))
