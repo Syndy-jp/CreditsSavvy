@@ -7,11 +7,11 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def lambda_handler(event, context):
     try:
         data: bin = event.get('body', '{}')
-else:
-    return return {        
-            'statusCode': 500,
-            'body': "データを読み込めてない",
-        }
+    except:
+        return {        
+                'statusCode': 500,
+                'body': "データを読み込めてない",
+            }
     
     # data = json.loads(event)
     # mp3: bin = data['mp3']
