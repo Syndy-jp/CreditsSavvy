@@ -1,4 +1,4 @@
-# CreditsSavvy
+![CreditsSavvy](https://cdn.discordapp.com/attachments/1126065092451110953/1127281258964201624/creditssavvy_logo.jpg) 
 academix hackathon提出プロダクト
 
 Credits Savvyは、オーディオ講座で学生の単位取得をサポートします。

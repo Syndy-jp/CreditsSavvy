@@ -8,6 +8,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 BUCKET_NAME: str = os.environ['BUCKET_NAME']
 
 def lambda_handler(event, context):
+    print(event)
     data:dict = event
     theme: str = data['theme']
     table_of_contents:dict = data['table_of_contents']

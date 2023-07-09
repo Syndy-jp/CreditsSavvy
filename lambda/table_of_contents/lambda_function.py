@@ -5,10 +5,11 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def lambda_handler(event, context):
-    data = event
+    print(event)
+    data = event.environ["body"]
     theme: str = data["theme"]
     #目次の作成(成功するまで10回トライ)
-    trial = 1
+    trial = 3
     for i in range(trial):
         try:
             table_of_contents: str = generate_table_of_contents(theme)
