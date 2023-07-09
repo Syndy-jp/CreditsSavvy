@@ -26,10 +26,9 @@ def lambda_handler(event, context):
     
     
 def speech2text(audio_data: bytes) -> str:
-    response = openai.Transcription.create(
-        audio=audio_data,
-        model='whisper',
-        language='en'
+    response = openai.Audio.transcribe(
+        "whisper-1",
+        audio_data
     )
     transcription = response['transcriptions'][0]['text']
     return transcription  
